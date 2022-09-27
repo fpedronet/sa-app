@@ -1,0 +1,10 @@
+.mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button{
+    margin: 2px;
+}
+
+mat-form-field{
+    margin: 0 0 -8px 0;
+}
+input{
+    font-size: 11px;
+  }

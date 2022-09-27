@@ -1,0 +1,49 @@
+<h3 mat-dialog-title>BÚSQUEDA USUARIO</h3>
+
+<mat-dialog-content class="modal">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Linea</mat-label>
+        <input #LINEA [(ngModel)]="linea" matInput placeholder="Búsqueda" #input>
+        <button *ngIf="LINEA.value" type="button" matSuffix mat-icon-button aria-label="Linea" (click)="LINEA.value=''; linea = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+   <mat-form-field appearance="outline">
+      <mat-label>División</mat-label>
+      <input #DIVISION [(ngModel)]="division" matInput placeholder="Búsqueda" #input>
+      <button *ngIf="DIVISION.value" type="button" matSuffix mat-icon-button aria-label="Division" (click)="DIVISION.value=''; division = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Producto</mat-label>
+    <input #PRODUCTO [(ngModel)]="producto" matInput placeholder="Búsqueda" #input>
+    <button *ngIf="PRODUCTO.value" type="button" matSuffix mat-icon-button aria-label="Producto" (click)="PRODUCTO.value=''; producto = ''">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Estado</mat-label>
+    <mat-select 
+    placeholder="Estado"
+    [(ngModel)]="estado"
+    (selectionChange)="selectestado($event.value)"
+    >
+     <mat-option [value]="'Todos'">Todos</mat-option>  
+     <mat-option [value]="'PENDIENTE'">Pendiente</mat-option>  
+     <mat-option [value]="'COMPLETADO'">Completado</mat-option>  
+     <mat-option [value]="'ERROR'">Error</mat-option>  
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<div class="btnModal" align="end">
+  <button mat-stroked-button class="btnRed" mat-dialog-close><mat-icon>close</mat-icon>Cerrar</button> 
+  <button mat-stroked-button class="btnYellow"(click)="limpiar()"><mat-icon>cleaning_services</mat-icon>Limpiar</button>
+  <button mat-stroked-button class="btnBlue" (click)="buscar()"><mat-icon>search</mat-icon>Buscar</button>
+</div>

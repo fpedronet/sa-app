@@ -1,0 +1,27 @@
+[
+    {
+        "nIdEstado":0,
+        "vDescripcion":"Todos",
+        "class":"gris",
+        "pantallas":[1,0,0,0]
+    },
+    {
+        "nIdEstado":1,
+        "vDescripcion":"PENDIENTE",
+        "class":"amarillo",
+        "pantallas":[1,0,0,1]
+    },
+    {
+        "nIdEstado":2,
+        "vDescripcion":"COMPLETADO",
+        "class":"verde",
+        "pantallas":[1,0,0,1]
+    },
+    {
+        "nIdEstado":3,
+        "vDescripcion":"ERROR",
+        "class":"rojo",
+        "pantallas":[1,0,0,2]
+    }
+   
+]

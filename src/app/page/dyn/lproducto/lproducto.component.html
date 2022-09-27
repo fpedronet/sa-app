@@ -1,0 +1,232 @@
+<mat-toolbar color="primary" class="example-toolbar submenu example-button">
+    <div class="example-button-row">
+      <button mat-stroked-button class="btnHeader" (click)="actualizar()">
+        <mat-icon class="maticonmenu">syncalt</mat-icon>
+        <span class="maticontitle">Actualizar</span>
+      </button>
+      <button mat-stroked-button class="btnHeader" (click)="abrirBusqueda()">
+        <mat-icon class="maticonmenu">filter_alt</mat-icon>
+        <span class="maticontitle">Filtrar</span>
+      </button>
+      <button mat-stroked-button class="btnHeader" (click)="exportar()">
+        <mat-icon class="maticonmenu">file_download</mat-icon>
+        <span class="maticontitle">Exportar</span>
+      </button>
+    </div>
+</mat-toolbar>
+  
+  <div class="container">  
+    <mat-card class="cardborde">   
+      <mat-toolbar class="cardtitle"></mat-toolbar>
+      <h2 class="title-label"> LISTADO DE MAESTRO ARTICULO</h2>
+      <mat-divider></mat-divider>
+        
+      <div id="content"> 
+        <div style="width: 100%; float:left;margin-bottom: -17px;">
+          <div class="card-title-label2">
+            <span>Cantidad Registro: {{estado}} {{countRegistro}} <div class="circulotitle {{claseEstado}}"></div></span>
+          </div> 
+        </div> 
+    </div>
+
+    <br style="clear:both;"/>
+    <br style="clear:both;"/>
+
+    <div class="example-loading-shade" *ngIf="loading || existRegistro">
+        <mat-spinner *ngIf="loading"></mat-spinner>
+        <div class="example-rate-limit-reached" *ngIf="existRegistro">
+        No se encontraron registros.
+        </div>
+    </div>
+
+    <div class="example-container mat-elevation-z0">
+        <mat-table [dataSource]="dataSource" matSort>
+        
+        <ng-container matColumnDef="cod1">
+            <mat-header-cell *matHeaderCellDef>Código 1</mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+            <mat-form-field appearance="outline">
+                <input matInput readonly="true" onclick="this.select();" (change)="guardar(element.cod1 ,'Cod1', $event)" placeholder="Código 1" [value]="element.cod1" [(ngModel)]="element.cod1">
+            </mat-form-field>
+            </mat-cell>
+        </ng-container>
+            
+        <ng-container matColumnDef="cod2">
+            <mat-header-cell *matHeaderCellDef>Código 2 </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'Cod2', $event)" placeholder="Código 2" [value]="element.cod2" [(ngModel)]="element.cod2">
+                </mat-form-field>    
+            </mat-cell>
+            </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+            <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'Descripcion', $event)" placeholder="Descripción" [value]="element.descripcion" [(ngModel)]="element.descripcion">
+                </mat-form-field>  
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="unidadMed">
+            <mat-header-cell *matHeaderCellDef> Unidad Medida </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+            <mat-form-field appearance="outline">
+                <mat-select placeholder="Unidad Medida" [(ngModel)]="element.unidadMed" (selectionChange)="guardar(element.cod1 ,'UnidadMed',$event.value, true)">
+                    <mat-option *ngFor="let el of listaUnidadMed" [value]="el.codigo">
+                    {{el.descripcion}}
+                    </mat-option>
+                </mat-select>
+
+                <!-- <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'UnidadMed', $event)" placeholder="Unidad Medida" [value]="element.unidadMed" [(ngModel)]="element.unidadMed"> -->
+            </mat-form-field>  
+            </mat-cell>
+        </ng-container> 
+        
+        <ng-container matColumnDef="uniNeg">
+            <mat-header-cell *matHeaderCellDef> Unidad Neg </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Unidad Neg" [(ngModel)]="element.uniNeg" (selectionChange)="guardar(element.cod1 ,'UniNeg',$event.value, true)">
+                        <mat-option *ngFor="let el of listaUnidadNeg" [value]="el.codigo">
+                        {{el.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                    <!-- <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'UniNeg', $event)" placeholder="Unidad Neg" [value]="element.uniNeg" [(ngModel)]="element.uniNeg"> -->
+                </mat-form-field>  
+            </mat-cell>
+        </ng-container> 
+
+        <ng-container matColumnDef="linNeg">
+            <mat-header-cell *matHeaderCellDef> LinNeg</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="LinNeg" [(ngModel)]="element.linNeg" (selectionChange)="guardar(element.cod1 ,'LinNeg',$event.value, true)">
+                        <mat-option *ngFor="let el of listaLineaNeg" [value]="el.codigo">
+                        {{el.descripcion}}
+                        </mat-option>
+                    </mat-select>
+
+                    <!-- <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'LinNeg', $event)" placeholder="LinNeg" [value]="element.linNeg" [(ngModel)]="element.linNeg"> -->
+                </mat-form-field> 
+            </mat-cell>
+        </ng-container> 
+
+        <ng-container matColumnDef="unidadMedComp">
+            <mat-header-cell *matHeaderCellDef> Unidad MedComp </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'UnidadMedComp', $event)" placeholder="Unidad MedComp" [value]="element.unidadMedComp" [(ngModel)]="element.unidadMedComp">
+                </mat-form-field>  
+            </mat-cell>
+        </ng-container> 
+
+        <ng-container matColumnDef="registro">
+            <mat-header-cell *matHeaderCellDef> Registro </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'Registro', $event)" placeholder="Registro" [value]="element.registro" [(ngModel)]="element.registro">
+                </mat-form-field>  
+            </mat-cell>
+        </ng-container> 
+
+        <ng-container matColumnDef="temperatura">
+            <mat-header-cell *matHeaderCellDef> Temperatura </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Temperatura" [(ngModel)]="element.temperatura" (selectionChange)="guardar(element.cod1 ,'Temperatura',$event.value, true)">
+                        <mat-option *ngFor="let el of listaTemmperatura" [value]="el.codigo">
+                        {{el.descripcion}}
+                        </mat-option>
+                    </mat-select>
+
+                    <!-- <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'Temperatura', $event)" placeholder="Temperatura" [value]="element.temperatura" [(ngModel)]="element.temperatura"> -->
+                </mat-form-field>  
+            </mat-cell>
+        </ng-container> 
+
+        <ng-container matColumnDef="codEqv">
+            <mat-header-cell *matHeaderCellDef> CodEqv </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'CodEqv', $event)" placeholder="CodEqv" [value]="element.codEqv" [(ngModel)]="element.codEqv">
+                </mat-form-field> 
+            </mat-cell>
+        </ng-container> 
+
+        <ng-container matColumnDef="cateCmd">
+            <mat-header-cell *matHeaderCellDef> CateCmd </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'CateCmd', $event)" placeholder="CateCmd" [value]="element.cateCmd" [(ngModel)]="element.cateCmd">
+                </mat-form-field> 
+            </mat-cell>
+        </ng-container> 
+
+        <ng-container matColumnDef="subCateCmd">
+            <mat-header-cell *matHeaderCellDef> Sub CateCmd </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'SubCateCmd', $event)" placeholder="Sub CateCmd" [value]="element.subCateCmd" [(ngModel)]="element.subCateCmd">
+                </mat-form-field> 
+            </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="observaciones">
+            <mat-header-cell *matHeaderCellDef> Observaciones </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'Observaciones', $event)" placeholder="Observaciones" [value]="element.observaciones" [(ngModel)]="element.observaciones">
+                </mat-form-field> 
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+            <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Estado" [(ngModel)]="element.estado" (selectionChange)="guardar(element.cod1 ,'Estado',$event.value, true)">
+                        <mat-option *ngFor="let el of listaEstado" [value]="el.codigo">
+                        {{el.descripcion}}
+                        </mat-option>
+                    </mat-select>
+
+                    <!-- <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'Estado', $event)" placeholder="Estado" [value]="element.estado" [(ngModel)]="element.estado"> -->
+                </mat-form-field> 
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="factConver">
+            <mat-header-cell *matHeaderCellDef> FactConver </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <input matInput oninput="if(this.value.length>=4) { this.value = this.value.slice(0,4); }"  onkeypress="return /[0-9|.]/i.test(event.key)" class="example-right-align"  onclick="this.select();" (change)="guardar(element.cod1 ,'FactConver', $event)" placeholder="FactConver" [value]="element.factConver" [(ngModel)]="element.factConver">
+                </mat-form-field> 
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fecExpiraObligado">
+            <mat-header-cell *matHeaderCellDef> FecExpiraObligado </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline">
+                    <input matInput onclick="this.select();" (change)="guardar(element.cod1 ,'FecExpiraObligado', $event)" placeholder="FecExpiraObligado" [value]="element.fecExpiraObligado" [(ngModel)]="element.fecExpiraObligado">
+                </mat-form-field> 
+            </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+        </mat-table>
+        <mat-paginator 
+        [length]="countRegistro" 
+        [pageSizeOptions]="[12, 50, 100]" 
+        showFirstLastButtons 
+        aria-label="Select page of users">
+        </mat-paginator>
+    </div>
+
+    </mat-card>
+  </div>

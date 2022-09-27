@@ -1,0 +1,39 @@
+.example-container {
+    height: 550px;
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+  }
+  
+  mat-row{
+  margin: 0 0 -25px -11px;
+  }
+  
+  mat-table {
+    width: 2300px;
+  }
+  
+  mat-cell{
+    margin-left:2px;
+  }
+  
+  mat-cell.mat-column-star {
+    width: 10px;
+    padding-right: 2px;
+  }
+  
+  ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.2em 0px !important;}
+  ::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+  
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+      transform: translateY(-1.1em) scale(.75);
+      width: 133.33333%;
+  }
+  
+  input{
+    font-size: 11px;
+  }
+  mat-header-cell.mat-column-position, mat-cell.mat-column-position {
+    padding-left: 8px;
+  }
+  
