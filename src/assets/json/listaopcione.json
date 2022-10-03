@@ -10,5 +10,11 @@
       "nombre":"Maestro Articulo",
       "icon":"insert_drive_file",
       "admin":false
+    },
+    {
+      "url":"/page/ingenieria/repuesto",
+      "nombre":"Repuesto Ing",
+      "icon":"insert_drive_file",
+      "admin":false
    } 
  ]

@@ -4,8 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { RepuestoIng } from 'src/app/_model/ingenieria/repuestoing';
 
-import { RepuestoIng } from 'src/app/_model/repuesto/repuestoing';
 import { RepuestoingService } from 'src/app/_service/repuesto/repuestoing.service';
 import { SpinnerService } from '../../component/spinner/spinner.service';
 

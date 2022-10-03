@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SortDirection } from '@angular/material/sort';
 import { dataCollection } from 'src/app/_model/dataCollection';
-import { RepuestoIngRequest } from 'src/app/_model/repuesto/repuestoing';
+import { RepuestoIngRequest } from 'src/app/_model/ingenieria/repuestoing';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
