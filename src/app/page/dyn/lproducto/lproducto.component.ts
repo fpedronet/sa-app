@@ -7,7 +7,7 @@ import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { FproductoComponent } from '../fproducto/fproducto.component';
 
-import { Producto } from 'src/app/_model/Dyn/producto';
+import { Producto } from 'src/app/_model/dyn/producto';
 import { Combobox } from 'src/app/_model/combobox';
 
 import { environment } from 'src/environments/environment';

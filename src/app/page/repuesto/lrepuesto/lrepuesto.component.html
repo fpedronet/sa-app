@@ -1,0 +1,104 @@
+<mat-toolbar color="primary" class="example-toolbar submenu example-button">
+    <div class="example-button-row">
+      <button mat-stroked-button class="btnHeader" (click)="actualizar()">
+        <mat-icon class="maticonmenu">syncalt</mat-icon>
+        <span class="maticontitle">Actualizar</span>
+      </button>
+      <button mat-stroked-button class="btnHeader" (click)="exportar()">
+        <mat-icon class="maticonmenu">file_download</mat-icon>
+        <span class="maticontitle">Exportar</span>
+      </button>
+    </div>
+  </mat-toolbar>
+  
+  <div class="container">  
+    <mat-card class="cardborde">   
+      <mat-toolbar class="cardtitle"></mat-toolbar>
+      <h2 class="title-label">  LISTADO DE REPUESTO ING. </h2>
+      <mat-divider></mat-divider>
+      <form style="padding: 0;">     
+        
+        <div class="example-loading-shade" *ngIf="loading || existRegistro">
+          <mat-spinner *ngIf="loading"></mat-spinner>
+          <div class="example-rate-limit-reached" *ngIf="existRegistro">
+            No se encontraron registros.
+          </div>
+        </div>
+  
+        <div class="example-container mat-elevation-z0">
+          <mat-table [dataSource]="dataSource" matSort>
+           
+            <ng-container matColumnDef="codProd">
+              <mat-header-cell *matHeaderCellDef [ngClass]="'widthTable web'">CodProd</mat-header-cell>
+              <mat-cell *matCellDef="let element" [ngClass]="'widthTable web'" data-label="CodProd"> 
+                <div class="tbcodigo"> 
+                  {{element.codProd}}
+                </div>     
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="codEqv">
+                <mat-header-cell *matHeaderCellDef> CodEqv </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="CodEqv"> {{element.codEqv}} </mat-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="repuesto">
+                <mat-header-cell *matHeaderCellDef> Repuesto </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Repuesto"> {{element.repuesto}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ref1">
+                <mat-header-cell *matHeaderCellDef> Ref1 </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Ref1"> {{element.ref1}} </mat-cell>
+              </ng-container>
+
+            <ng-container matColumnDef="ref4">
+                <mat-header-cell *matHeaderCellDef> Ref4 </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Ref4"> {{element.ref4}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ultEnvio">
+                <mat-header-cell *matHeaderCellDef> UltEnvio </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="UltEnvio"> {{element.ultEnvio}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="codIng">
+                <mat-header-cell *matHeaderCellDef> CodIng </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="CodIng"> {{element.codIng}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ingeniero">
+                <mat-header-cell *matHeaderCellDef> Ingeniero </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Ingeniero"> {{element.ingeniero}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="prestamo">
+                <mat-header-cell *matHeaderCellDef> Prestamo </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Prestamo"> {{element.prestamo}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="devolucion">
+                <mat-header-cell *matHeaderCellDef> Devolucion </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="devolucion"> {{element.devolucion}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="saldo">
+                <mat-header-cell *matHeaderCellDef> Saldo </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="saldo"> {{element.saldo}} </mat-cell>
+            </ng-container>
+                        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          
+          </mat-table>
+          <mat-paginator 
+            [length]="countRegistro" 
+            [pageSizeOptions]="[5, 10, 20]" 
+            showFirstLastButtons 
+            aria-label="Seleccione página de rendiciones">
+          </mat-paginator>
+        </div>
+  
+      </form>    
+    </mat-card>
+  </div>

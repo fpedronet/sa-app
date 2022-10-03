@@ -13,6 +13,8 @@ import { Not403Component } from './configuracion/not403/not403.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
 import { LproductoComponent } from './dyn/lproducto/lproducto.component';
 import { FproductoComponent } from './dyn/fproducto/fproducto.component';
+import { LrepuestoComponent } from './repuesto/lrepuesto/lrepuesto.component';
+import { FrepuestoComponent } from './repuesto/frepuesto/frepuesto.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { FproductoComponent } from './dyn/fproducto/fproducto.component';
     Not403Component,
     PerfilComponent,
     LproductoComponent,
-    FproductoComponent
+    FproductoComponent,
+    LrepuestoComponent,
+    FrepuestoComponent
   ],
   imports: [
     MaterialModule,

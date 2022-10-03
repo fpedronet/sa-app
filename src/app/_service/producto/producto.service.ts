@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SortDirection } from '@angular/material/sort';
 import { dataCollection } from 'src/app/_model/dataCollection';
-import { Producto, ProductoRequest } from 'src/app/_model/Dyn/producto';
+import { Producto, ProductoRequest } from 'src/app/_model/dyn/producto';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -43,4 +43,5 @@ export class ProductoService {
 
     return this.http.get<string>(urls);
   }
+  
 }
