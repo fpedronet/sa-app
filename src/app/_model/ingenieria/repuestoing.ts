@@ -4,9 +4,10 @@ export class RepuestoIng {
     codProd?: string;
     codEqv?: string;
     repuesto?: string;
-    ref1?: string;
-    ref4?: string;
-    ultEnvio?: string;
+    rEF1?: string;
+    rEF4?: string;
+    ultEnvio?: Date;
+    vUltEnvio?: string;
     codIng?: string;
     ingeniero?: string;
     prestamo?: string;

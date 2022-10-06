@@ -4,6 +4,10 @@
         <mat-icon class="maticonmenu">syncalt</mat-icon>
         <span class="maticontitle">Actualizar</span>
       </button>
+      <button mat-stroked-button class="btnHeader" (click)="abrirBusqueda()">
+        <mat-icon class="maticonmenu">filter_alt</mat-icon>
+        <span class="maticontitle">Filtrar</span>
+      </button>
       <button mat-stroked-button class="btnHeader" (click)="exportar()">
         <mat-icon class="maticonmenu">file_download</mat-icon>
         <span class="maticontitle">Exportar</span>
@@ -47,19 +51,19 @@
                 <mat-cell *matCellDef="let element" data-label="Repuesto"> {{element.repuesto}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="ref1">
+            <ng-container matColumnDef="reF1">
                 <mat-header-cell *matHeaderCellDef> Ref1 </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="Ref1"> {{element.ref1}} </mat-cell>
+                <mat-cell *matCellDef="let element" data-label="Ref1"> {{element.reF1}} </mat-cell>
               </ng-container>
 
-            <ng-container matColumnDef="ref4">
+            <ng-container matColumnDef="reF4">
                 <mat-header-cell *matHeaderCellDef> Ref4 </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="Ref4"> {{element.ref4}} </mat-cell>
+                <mat-cell *matCellDef="let element" data-label="Ref4"> {{element.reF4}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="ultEnvio">
+            <ng-container matColumnDef="vUltEnvio">
                 <mat-header-cell *matHeaderCellDef> UltEnvio </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="UltEnvio"> {{element.ultEnvio}} </mat-cell>
+                <mat-cell *matCellDef="let element" data-label="UltEnvio"> {{element.vUltEnvio}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="codIng">

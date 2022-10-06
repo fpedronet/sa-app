@@ -14,9 +14,9 @@ import { environment } from 'src/environments/environment';
 import jsonEstado from 'src/assets/json/estadodyn.json';
 
 import { UsuarioService } from 'src/app/_service/configuracion/usuario.service';
-import { ProductoService } from 'src/app/_service/producto/producto.service';
 import { ComboboxService } from 'src/app/_service/combobox.service';
 import { SpinnerService } from '../../component/spinner/spinner.service';
+import { ProductoService } from 'src/app/_service/ingenieria/producto.service';
 
 @Component({
   selector: 'app-lproducto',

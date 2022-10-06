@@ -17,7 +17,8 @@ export class RepuestoingService {
     private http: HttpClient
   ) { }
 
-  listar(page: number,pages: number, column: string, order: SortDirection) {
+  listar(dato: string, fecha: string, page: number,pages: number, column: string, order: SortDirection) {
+  
     let urls = `${this.url}/GetAllRepuestoIng`;
     let req = new RepuestoIngRequest();
     
@@ -30,7 +31,7 @@ export class RepuestoingService {
   }
 
   exportar() {
-    let urls = `${this.urlRe}/GetExportarProductoDyn`;
+    let urls = `${this.urlRe}/GetExportarRepuestoIng`;
 
     return this.http.get<string>(urls);
   }
