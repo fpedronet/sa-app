@@ -11,8 +11,10 @@ import { environment } from 'src/environments/environment';
 })
 export class FrepuestoComponent implements OnInit {
 
-  dato? : string;
-  fecha? : string;
+  dato? : string = "";
+
+  fechaInicio = new Date();
+  fechaSelectIni = new Date();
 
   constructor(
     private dialogRef: MatDialogRef<FrepuestoComponent>,
@@ -31,7 +33,7 @@ export class FrepuestoComponent implements OnInit {
     
     if(filtro !== null){
       this.dato = filtro![0];
-      this.fecha = filtro![1];
+      this.fechaSelectIni = (filtro![1]=="")? null! :new Date(filtro![1]);
     }
     this.spinnerService.hideLoading();
   }
@@ -42,13 +44,13 @@ export class FrepuestoComponent implements OnInit {
 
   limpiar(){
     this.dato = "Todos";
-    this.fecha = "";
+    this.fechaSelectIni = null!;
   }
 
   buscar(){
     localStorage.setItem(environment.CODIGO_FILTRO, 
-                        (this.dato===undefined?'':this.dato)+"|"+
-                        (this.fecha===undefined?'':this.fecha));
+                        (this.dato===null?'':this.dato)+"|"+
+                        (this.fechaSelectIni===null?'':this.fechaSelectIni));
 
     this.dialogRef.close();  
   }

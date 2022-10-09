@@ -19,17 +19,18 @@
      <mat-option [value]="'NOE ALARCON'">NOE ALARCON</mat-option>  
      <mat-option [value]="'JAVIER ZARATE'">JAVIER ZARATE</mat-option>  
      <mat-option [value]="'JORGE MORE'">JORGE MORE</mat-option>  
+     <mat-option [value]="'MARCOS RODRIGUEZ'">MARCOS RODRIGUEZ</mat-option>
      <mat-option [value]="'Otros'">Otros</mat-option>  
     </mat-select>
   </mat-form-field>
 
-  <!-- <mat-form-field appearance="outline">
-    <mat-label>Linea</mat-label>
-    <input #LINEA [(ngModel)]="linea" matInput placeholder="Búsqueda" #input>
-    <button *ngIf="LINEA.value" type="button" matSuffix mat-icon-button aria-label="Linea" (click)="LINEA.value=''; linea = ''">
-      <mat-icon>close</mat-icon>
-    </button>
-</mat-form-field> -->
+  <mat-form-field appearance="outline">
+    <mat-label>Fecha </mat-label>
+    <input matInput [matDatepicker]="fechaInicio" placeholder="dd/mm/yyyy" [max]="fechaInicio" 
+    [(ngModel)]="fechaSelectIni">
+    <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+    <mat-datepicker #fechaInicio></mat-datepicker>
+  </mat-form-field>
 
 
 </mat-dialog-content>

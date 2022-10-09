@@ -17,5 +17,6 @@ export class RepuestoIng {
 
 
 export class RepuestoIngRequest extends pagination {
-
+    data?: string;
+    fecha?: string;
 }

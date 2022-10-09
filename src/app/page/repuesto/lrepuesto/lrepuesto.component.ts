@@ -61,10 +61,11 @@ export class LrepuestoComponent implements OnInit {
         startWith({}),
         switchMap(() => {
           let filtro = this.usuarioService.sessionFiltro();
+          let fecha = (filtro![1]==null || filtro![1]=="")?null:new Date(filtro![1]);
 
           return this.repuestoingService!.listar(
             filtro![0],
-            filtro![1],
+            fecha!,
             this.paginator.pageIndex,
             this.paginator.pageSize,
             this.sort.active,
@@ -97,7 +98,7 @@ export class LrepuestoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       if(res!=""){
         this.paginator.pageIndex = 0,
-        this.paginator.pageSize = 12
+        this.paginator.pageSize = 10
         this.ngAfterViewInit();
         }
     })
@@ -110,7 +111,10 @@ export class LrepuestoComponent implements OnInit {
   exportar(){
     this.spinnerService.showLoading();
 
-    this.repuestoingService.exportar()
+    let filtro = this.usuarioService.sessionFiltro();
+    let fecha = (filtro![1]==null || filtro![1]=="")?null:new Date(filtro![1]);
+
+    this.repuestoingService.exportar(filtro![0], fecha!,)
       .subscribe(
         data => {
           this.spinnerService.hideLoading();
@@ -125,10 +129,20 @@ export class LrepuestoComponent implements OnInit {
           for(let i = 0; i < byteChar.length; i++){
             byteArray[i] = byteChar.charCodeAt(i);
           }
+          
           let uIntArray = new Uint8Array(byteArray);
           let blob = new Blob([uIntArray], {type : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;'});
-          const fileURL = URL.createObjectURL(blob);
-          window.open(fileURL, `${NomFile}.xlsx`);
+          // const fileURL = URL.createObjectURL(blob);          
+
+          var link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = 'Uso de Repuestos.xlsx';
+
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          // window.open(fileURL, `${NomFile}.xlsx`);
         }
       );
   }

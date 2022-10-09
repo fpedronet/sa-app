@@ -17,11 +17,12 @@ export class RepuestoingService {
     private http: HttpClient
   ) { }
 
-  listar(dato: string, fecha: string, page: number,pages: number, column: string, order: SortDirection) {
-  
+  listar(data: string, fecha: Date, page: number,pages: number, column: string, order: SortDirection) {
     let urls = `${this.url}/GetAllRepuestoIng`;
     let req = new RepuestoIngRequest();
     
+    req.data =  (data=="Todos")? null! : data;
+    req.fecha = (fecha==null)?null!:fecha.toISOString().slice(0, 10);
     req.page =  page!+1;
     req.pages =  pages;
     req.column = (column==undefined)?'':column;
@@ -30,8 +31,12 @@ export class RepuestoingService {
     return this.http.post<dataCollection>(urls,req);
   }
 
-  exportar() {
-    let urls = `${this.urlRe}/GetExportarRepuestoIng`;
+  exportar(data: string, fecha: Date) {
+    let dats =  (data=="Todos")? "" : data;
+    let date = (fecha==null)?"":fecha.toISOString().slice(0, 10);
+
+    let href = `${this.urlRe}/GetExportarRepuestoIng`;
+    let urls = `${href}?data=${dats}&fecha=${date}`;
 
     return this.http.get<string>(urls);
   }
