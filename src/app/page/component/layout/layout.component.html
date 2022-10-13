@@ -77,29 +77,32 @@
            
             <mat-divider *ngIf="m.url=='/page/inicio'"></mat-divider>
 
-            <mat-expansion-panel *ngIf="m.url!='/page/inicio' && m.url!='/page/cerrar'">
+            <mat-expansion-panel *ngIf="m.url!='/page/inicio' && m.url!='/page/cerrar'" disabled="">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  <a *ngIf="m.url==''"  class="menuvertical"><mat-icon>peopleoutline</mat-icon>{{m.nombre}}</a>
-                  <a *ngIf="m.url!=''"  class="menuvertical" routerLink="{{m.url}}" (click)="clearLocalStore()"><mat-icon>peopleoutline</mat-icon>{{m.nombre}}</a>
+                  <a *ngIf="m.url!=''"  class="menuvertical" routerLink="{{m.url}}" (click)="clearLocalStore()">
+                    <mat-icon>peopleoutline</mat-icon>
+                    {{m.nombre}}
+                  </a>
                 </mat-panel-title>
               </mat-expansion-panel-header>
             </mat-expansion-panel>
             
             <mat-divider *ngIf="m.url!='/page/inicio' && m.url!='/page/cerrar'"></mat-divider>
 
-            <mat-expansion-panel *ngIf="m.url=='/page/cerrar'" disabled="">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <a class="menuvertical" (click)="closeLogin()">
-                    <mat-icon>logout</mat-icon>
-                    {{m.nombre}}
-                  </a>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-            </mat-expansion-panel> 
+          </div>  
+          
+          <mat-expansion-panel disabled="">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <a class="menuvertical" (click)="closeLogin()">
+                  <mat-icon>logout</mat-icon>
+                  Cerrar sesión
+                </a>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel> 
 
-          </div>       
         </mat-accordion>
 
       </div>
