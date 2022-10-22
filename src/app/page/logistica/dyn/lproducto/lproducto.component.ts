@@ -15,8 +15,8 @@ import jsonEstado from 'src/assets/json/estadodyn.json';
 
 import { UsuarioService } from 'src/app/_service/configuracion/usuario.service';
 import { ComboboxService } from 'src/app/_service/combobox.service';
-import { SpinnerService } from '../../component/spinner/spinner.service';
 import { ProductoService } from 'src/app/_service/ingenieria/producto.service';
+import { SpinnerService } from 'src/app/page/component/spinner/spinner.service';
 
 @Component({
   selector: 'app-lproducto',

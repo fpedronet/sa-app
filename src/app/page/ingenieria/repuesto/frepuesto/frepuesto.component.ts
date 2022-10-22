@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { SpinnerService } from 'src/app/page/component/spinner/spinner.service';
 import { UsuarioService } from 'src/app/_service/configuracion/usuario.service';
+
 import { environment } from 'src/environments/environment';
 
 @Component({

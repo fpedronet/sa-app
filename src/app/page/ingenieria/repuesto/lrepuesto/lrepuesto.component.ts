@@ -5,12 +5,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap} from 'rxjs/operators';
-import { RepuestoIng } from 'src/app/_model/ingenieria/repuestoing';
-import { UsuarioService } from 'src/app/_service/configuracion/usuario.service';
 
-import { RepuestoingService } from 'src/app/_service/repuesto/repuestoing.service';
+import { RepuestoIng } from 'src/app/_model/ingenieria/repuestoing';
+
+import { SpinnerService } from 'src/app/page/component/spinner/spinner.service';
+import { UsuarioService } from 'src/app/_service/configuracion/usuario.service';
+import { RepuestoingService } from 'src/app/_service/logistica/repuestoing.service';
+
 import { environment } from 'src/environments/environment';
-import { SpinnerService } from '../../component/spinner/spinner.service';
 import { FrepuestoComponent } from '../frepuesto/frepuesto.component';
 
 @Component({
@@ -60,6 +62,7 @@ export class LrepuestoComponent implements OnInit {
       .pipe(
         startWith({}),
         switchMap(() => {
+          this.loading = true;
           let filtro = this.usuarioService.sessionFiltro();
           let fecha = (filtro![1]==null || filtro![1]=="")?null:new Date(filtro![1]);
 

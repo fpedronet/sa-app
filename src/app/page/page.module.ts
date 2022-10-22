@@ -11,10 +11,11 @@ import { InterceptorService } from '../_interceptors/interceptor.service';
 import { Not404Component } from './configuracion/not404/not404.component';
 import { Not403Component } from './configuracion/not403/not403.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
-import { LproductoComponent } from './dyn/lproducto/lproducto.component';
-import { FproductoComponent } from './dyn/fproducto/fproducto.component';
-import { LrepuestoComponent } from './repuesto/lrepuesto/lrepuesto.component';
-import { FrepuestoComponent } from './repuesto/frepuesto/frepuesto.component';
+import { LproductoComponent } from './logistica/dyn/lproducto/lproducto.component';
+import { FproductoComponent } from './logistica/dyn/fproducto/fproducto.component';
+import { LrepuestoComponent } from './ingenieria/repuesto/lrepuesto/lrepuesto.component';
+import { FrepuestoComponent } from './ingenieria/repuesto/frepuesto/frepuesto.component';
+import { ImportarproductoComponent } from './logistica/importarproducto/importarproducto.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FrepuestoComponent } from './repuesto/frepuesto/frepuesto.component';
     LproductoComponent,
     FproductoComponent,
     LrepuestoComponent,
-    FrepuestoComponent
+    FrepuestoComponent,
+    ImportarproductoComponent
   ],
   imports: [
     MaterialModule,

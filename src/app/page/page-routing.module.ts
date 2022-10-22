@@ -5,8 +5,9 @@ import { GuardService } from '../_service/guard.service';
 import { HomeComponent } from './home/home.component';
 
 import { Not403Component } from './configuracion/not403/not403.component';
-import { LproductoComponent } from './dyn/lproducto/lproducto.component';
-import { LrepuestoComponent } from './repuesto/lrepuesto/lrepuesto.component';
+import { LproductoComponent } from './logistica/dyn/lproducto/lproducto.component';
+import { LrepuestoComponent } from './ingenieria/repuesto/lrepuesto/lrepuesto.component';
+
 
 const routes: Routes = [
   {path:'inicio', component: HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
 
   /********* Como ejemplo *******/
   {path:'dyn/producto', component: LproductoComponent, canActivate: [GuardService]},
+  {path:'dyn/importarproducto', component: LproductoComponent, canActivate: [GuardService]},
   {path:'ingenieria/repuesto', component: LrepuestoComponent, canActivate: [GuardService]},
 
 ];
