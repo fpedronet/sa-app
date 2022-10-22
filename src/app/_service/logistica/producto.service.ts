@@ -43,5 +43,14 @@ export class ProductoService {
 
     return this.http.get<string>(urls);
   }
+
+  buscarproducto(producto: string){
+    let req = new  ProductoRequest();
+    req.producto = producto;
+
+    let urls = `${this.url}/GetFindProductoDyn`;
+    return this.http.post<dataCollection>(urls,req);
+  }
+
   
 }

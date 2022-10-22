@@ -1,1 +1,77 @@
-<p>importarproducto works!</p>
+<mat-toolbar color="primary" class="example-toolbar submenu example-button">
+    <div class="example-button-row">
+      <input type="file" (change)="importar($event)">
+      <button mat-stroked-button class="btnHeader" #tooltip="matTooltip" matTooltip="Guardar" type="submit" [disabled]="frmGrupo.invalid" form="ngForm">
+        <mat-icon class="maticonmenu">save</mat-icon>
+        <span class="maticontitle">Guardar</span>
+      </button>
+    </div>
+  </mat-toolbar>
+  
+  <div class="container">  
+  <mat-card class="cardborde">   
+  <mat-toolbar class="cardtitle"></mat-toolbar>
+  
+  <h2 class="title-label">IMPORTA PRODUCTO</h2>  
+  
+  <mat-divider></mat-divider>
+  
+  <div id="content"> 
+    <div style="width: 100%; float:left;margin-bottom: -17px;"> 
+      <div style="text-align: center; color: #1a0da4; font-weight: 500;padding-top: 11px;">SUBIDO: {{cantSub}} | ECONTRADO: {{canEnc}} </div> 
+    </div> 
+  </div>
+  
+  <br style="clear:both;"/>
+  <br>
+  <form onkeydown="return event.key != 'Enter';" class="forms" id="ngForm" [formGroup]="form" #frmGrupo="ngForm" (ngSubmit)="guardar()"> 
+    <div class="content" style="height: 120vh;">
+  
+      <div class="left"> 
+        <label class="labelSubtittle">EXCEL</label>
+        <mat-divider></mat-divider>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>N°</th>  
+              <th>CODIGO CREADO</th>              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of excelData" class="selected">
+              <td>{{c.NRO}}</td>
+              <td>{{c.CODIGOS_CREADOS}}</td>         
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="right">
+        <label class="labelSubtittle">PRODUCTO IMPORTADO</label>
+        <mat-divider></mat-divider>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>CÓDIGO 1</th>  
+              <th>CÓDIGO 2</th>  
+              <th>DESCIPCIÓN</th>  
+              <th>UNIDAD MED</th>              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of dataSource">
+              <td>{{c.cod1}}</td>
+              <td>{{c.cod2}}</td>
+              <td>{{c.descripcion}}</td>
+              <td>{{c.unidadMed}}</td>             
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+  
+     
+  
+    </div>
+  </form> 
+  </mat-card>
+  </div>

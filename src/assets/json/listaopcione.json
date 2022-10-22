@@ -7,7 +7,13 @@
     },
     {
       "url":"/page/dyn/producto",
-      "nombre":"Maestro Articulo",
+      "nombre":"Producto",
+      "icon":"insert_drive_file",
+      "admin":false
+    },
+    {
+      "url":"/page/dyn/importarproducto",
+      "nombre":"Importar Producto",
       "icon":"insert_drive_file",
       "admin":false
     },

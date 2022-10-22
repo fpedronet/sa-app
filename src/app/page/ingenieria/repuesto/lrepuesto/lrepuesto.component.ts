@@ -10,7 +10,7 @@ import { RepuestoIng } from 'src/app/_model/ingenieria/repuestoing';
 
 import { SpinnerService } from 'src/app/page/component/spinner/spinner.service';
 import { UsuarioService } from 'src/app/_service/configuracion/usuario.service';
-import { RepuestoingService } from 'src/app/_service/logistica/repuestoing.service';
+import { RepuestoingService } from 'src/app/_service/ingenieria/repuestoing.service';
 
 import { environment } from 'src/environments/environment';
 import { FrepuestoComponent } from '../frepuesto/frepuesto.component';
