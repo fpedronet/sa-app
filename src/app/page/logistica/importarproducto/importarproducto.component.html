@@ -1,6 +1,11 @@
 <mat-toolbar color="primary" class="example-toolbar submenu example-button">
     <div class="example-button-row">
-      <input type="file" (change)="importar($event)">
+      
+    <span class="btn btn-file">
+        <img style="width: 37px; margin:0 0 -11px 0;" src="{{excel}}"/>
+        <input type="file" (change)="importar($event)">
+    </span>
+
       <button mat-stroked-button class="btnHeader" #tooltip="matTooltip" matTooltip="Guardar" type="submit" [disabled]="frmGrupo.invalid" form="ngForm">
         <mat-icon class="maticonmenu">save</mat-icon>
         <span class="maticontitle">Guardar</span>
@@ -39,8 +44,11 @@
           </thead>
           <tbody>
             <tr *ngFor="let c of excelData" class="selected">
-              <td>{{c.NRO}}</td>
-              <td>{{c.CODIGOS_CREADOS}}</td>         
+                <td *ngIf="c.COLOR==null" style="background: #ed5327">{{c.NRO}}</td>
+                <td *ngIf="c.COLOR==null" style="background: #ed5327">{{c.CODIGOS_CREADOS}}</td>   
+
+                <td *ngIf="c.COLOR!=null" style="background: {{c.COLOR}}">{{c.NRO}}</td>
+                <td *ngIf="c.COLOR!=null" style="background: {{c.COLOR}}">{{c.CODIGOS_CREADOS}}</td>                     
             </tr>
           </tbody>
         </table>

@@ -24,6 +24,11 @@ export class Producto {
     valor?: string;
 }
 
+export class Excel {
+    NRO?: string;
+    CODIGOS_CREADOS?: string;
+    COLOR?: string;
+}
 
 export class ProductoRequest extends pagination {
     linea?: string;

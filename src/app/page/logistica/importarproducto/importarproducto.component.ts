@@ -8,7 +8,7 @@ import { SpinnerService } from 'src/app/page/component/spinner/spinner.service';
 import { ProductoService } from 'src/app/_service/logistica/producto.service';
 
 import { environment } from 'src/environments/environment';
-import { Producto } from 'src/app/_model/dyn/producto';
+import { Excel, Producto } from 'src/app/_model/dyn/producto';
 
 @Component({
   selector: 'app-importarproducto',
@@ -18,12 +18,14 @@ import { Producto } from 'src/app/_model/dyn/producto';
 export class ImportarproductoComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
-  excelData: any;
+  // excelData: any;
   codigo: string = "";
   cantSub: number = 0;
   canEnc: number = 0;
   dataSource: Producto[] = [];
-  
+  excelData: Excel[] = [];
+  excel?: string =environment.UrlImage + "excelicon.png";
+
   constructor(
     private notifierService : NotifierService,
     private spinnerService : SpinnerService,
@@ -36,6 +38,7 @@ export class ImportarproductoComponent implements OnInit {
   importar(event: any){
     let file = event.target.files[0];
     let fileReader = new FileReader();
+    this.codigo = "";
 
     fileReader.readAsBinaryString(file);
 
@@ -55,11 +58,15 @@ export class ImportarproductoComponent implements OnInit {
         
         this.spinnerService.showLoading();
         this.productoService.buscarproducto(producto).subscribe(data=>{
+
           this.dataSource = data.items;
-          this.canEnc = data.items.length;
-          
+          this.canEnc = data.items.length;          
+
           this.dataSource.forEach(element => {
             this.codigo += element.cod1?.trim() + "|";  
+            var result = this.excelData?.filter(y=>y.CODIGOS_CREADOS==element.cod1?.trim())[0];
+            result!.COLOR= "#ffffff";
+
           });
 
           this.spinnerService.hideLoading();
@@ -70,19 +77,20 @@ export class ImportarproductoComponent implements OnInit {
   }
 
   guardar(){
-    console.log(this.codigo);
     let model = new Producto();
     model.codigo = this.codigo;
 
-    // this.spinnerService.showLoading();
-    // this.productoService.guardar(model).subscribe(data=>{
-    //   this.notifierService.showNotification(data.typeResponse!,'Mensaje',data.message!);
-    //   this.spinnerService.hideLoading();
+    this.spinnerService.showLoading();
+    this.productoService.guardarexcel(model).subscribe(data=>{
+      this.notifierService.showNotification(data.typeResponse!,'Mensaje',data.message!);
+      this.spinnerService.hideLoading();
 
-    //   if(data.typeResponse==environment.EXITO){
+      if(data.typeResponse==environment.EXITO){
                
-    //   }
-    // });
-  }
+        this.dataSource = [];
+        this.excelData = [];
+      }
+    });
+   }
 
 }
