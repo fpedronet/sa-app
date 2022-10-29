@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SpinnerService } from '../spinner/spinner.service';
 import { environment } from 'src/environments/environment';
 
 import { ConfigPermisoService } from './../../../_service/configpermiso.service';
+
+import { MatDialog } from '@angular/material/dialog';
 import { UsuarioService } from 'src/app/_service/configuracion/usuario.service';
-import { Menu } from 'src/app/_model/configuracion/menu';
+import { MenuResponse } from 'src/app/_model/configuracion/menu';
 
 
 @Component({
@@ -14,21 +17,22 @@ import { Menu } from 'src/app/_model/configuracion/menu';
 })
 export class LayoutComponent implements OnInit {
 
-
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private usuarioService: UsuarioService,
-    private configPermisoService : ConfigPermisoService,
+    private dialog: MatDialog,
+    private spinner : SpinnerService,
+    private ConfigPermisoService : ConfigPermisoService,
+    private logeoService : UsuarioService
   ) { }
 
-  menus: Menu[] = [];
+  menus: MenuResponse = {};
   codigo?:string;
   panelOpenState = false;
   count=false;
   empresa?: string = "";
   logo?: string =environment.UrlImage + "logoMenu.png";
   user?: string =environment.UrlImage + "userMenu.png";
-  iconSharePoint?: string =environment.UrlImage + "sharePoint-2.png";
   username: string = "";
   userdni: string = "";
   isshow: boolean = false;
@@ -39,16 +43,18 @@ export class LayoutComponent implements OnInit {
   }
 
   listar(){
- 
-    let session = this.usuarioService.sessionUsuario();
+    let session = this.logeoService.sessionUsuario();
 
     if(session!=null){
       this.username= session.nombreConocido.toUpperCase();
-      this.userdni =  session.dniEmp;
-      this.user = session.strFoto !== ''?session.strFoto : this.user;
-      
-      this.menus = this.configPermisoService.listar();
+      this.userdni =  session.documento;
 
+      this.spinner.showLoading();
+      this.ConfigPermisoService.listar().subscribe(data=>{
+        this.menus.listaMenu = data.listaMenu;
+
+        this.spinner.hideLoading();
+      });
     }else{
       localStorage.clear();
       this.router.navigate(['']);
@@ -68,12 +74,10 @@ export class LayoutComponent implements OnInit {
 
 
   abrirmenu(){
-
     if(this.isshow){
       this.isshow = false; 
     }else{
       this.isshow = true;  
     }
   }
-
 }

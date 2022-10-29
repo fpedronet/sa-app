@@ -13,7 +13,7 @@ import { UsuarioService } from './configuracion/usuario.service';
 export class GuardService implements CanActivate {
 
   constructor(
-    private usuarioService: UsuarioService,
+    private logeoService : UsuarioService,
     private router: Router,
     private configPermisoService : ConfigPermisoService,
   ) { }
@@ -40,20 +40,21 @@ export class GuardService implements CanActivate {
 
       //3) vERIFICA SI CIERRAS SECCION 
       if(url=="/login"){
-         this.router.navigate(['/page/inicio']);
+         this.router.navigate(['/page/home']);
          return false;
       }
 
       //3) OBTENIENDO EL ID DEL USUARIO PARA TRAER LAS OPCIONES DE MENU Y LOS PERMISO
-      let lista = this.configPermisoService.listar();
-      let cont = 0;
+      let session = this.logeoService.sessionUsuario();
+      return this.configPermisoService.configmenu().pipe(map(x => {
+        let cont = 0;
 
-      for (let m of lista) {
-          if (url.startsWith(m.url!)) {
+        for (let m of x.listaConfigMenu!) {
+          if (url.startsWith(m.vUrl!)) {
             cont++;
             break;
           }
-      }
+        }
         
         if (cont > 0) {
           return true;
@@ -61,10 +62,10 @@ export class GuardService implements CanActivate {
           this.router.navigate(['/page/not-403']);
           return false;
         }
+      }))   
     } 
     else {
       localStorage.clear();
-      // this.router.navigate(['']);
       window.location.reload();
       return false;
     }

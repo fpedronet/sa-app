@@ -11,7 +11,7 @@ import { ImportarproductoComponent } from './logistica/importarproducto/importar
 
 
 const routes: Routes = [
-  {path:'inicio', component: HomeComponent},
+  {path:'home', component: HomeComponent},
 
   {path: 'not-403', component: Not403Component},
 

@@ -8,7 +8,7 @@ import { SpinnerService } from 'src/app/page/component/spinner/spinner.service';
 import { ProductoService } from 'src/app/_service/logistica/producto.service';
 
 import { environment } from 'src/environments/environment';
-import { Producto, ProductoRequest } from 'src/app/_model/dyn/producto';
+import { Producto } from 'src/app/_model/dyn/producto';
 
 @Component({
   selector: 'app-importarproducto',
@@ -19,6 +19,7 @@ export class ImportarproductoComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
   excelData: any;
+  codigo: string = "";
   cantSub: number = 0;
   canEnc: number = 0;
   dataSource: Producto[] = [];
@@ -56,6 +57,11 @@ export class ImportarproductoComponent implements OnInit {
         this.productoService.buscarproducto(producto).subscribe(data=>{
           this.dataSource = data.items;
           this.canEnc = data.items.length;
+          
+          this.dataSource.forEach(element => {
+            this.codigo += element.cod1?.trim() + "|";  
+          });
+
           this.spinnerService.hideLoading();
         });
       }
@@ -64,17 +70,17 @@ export class ImportarproductoComponent implements OnInit {
   }
 
   guardar(){
-    // let model = new PerfilResponse();
-    // model.nIdPerfil = this.idperfil;
-    // model.listaMenu = this.listaMenu;
+    console.log(this.codigo);
+    let model = new Producto();
+    model.codigo = this.codigo;
 
     // this.spinnerService.showLoading();
-    // this.permisoService.guardar(model).subscribe(data=>{
+    // this.productoService.guardar(model).subscribe(data=>{
     //   this.notifierService.showNotification(data.typeResponse!,'Mensaje',data.message!);
     //   this.spinnerService.hideLoading();
 
     //   if(data.typeResponse==environment.EXITO){
-    //     this.listarMenu(this.idperfil!);        
+               
     //   }
     // });
   }

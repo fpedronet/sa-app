@@ -25,7 +25,7 @@
   <br style="clear:both;"/>
   <br>
   <form onkeydown="return event.key != 'Enter';" class="forms" id="ngForm" [formGroup]="form" #frmGrupo="ngForm" (ngSubmit)="guardar()"> 
-    <div class="content" style="height: 120vh;">
+    <div class="content">
   
       <div class="left"> 
         <label class="labelSubtittle">EXCEL</label>
@@ -45,6 +45,7 @@
           </tbody>
         </table>
       </div>
+
       <div class="right">
         <label class="labelSubtittle">PRODUCTO IMPORTADO</label>
         <mat-divider></mat-divider>

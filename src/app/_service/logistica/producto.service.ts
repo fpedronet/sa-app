@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { SortDirection } from '@angular/material/sort';
 import { dataCollection } from 'src/app/_model/dataCollection';
 import { Producto, ProductoRequest } from 'src/app/_model/dyn/producto';
+import { Response } from 'src/app/_model/response';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -48,9 +49,13 @@ export class ProductoService {
     let req = new  ProductoRequest();
     req.producto = producto;
 
-    let urls = `${this.url}/GetFindProductoDyn`;
+    let urls = `${this.url}/GetAllProductoDynExcel`;
     return this.http.post<dataCollection>(urls,req);
   }
 
-  
+  guardarexcel(model: Producto){
+    let urls = `${this.url}/PostSaveProductoDynExcel`;
+    return this.http.post<Response>(urls, model);
+  }
+
 }

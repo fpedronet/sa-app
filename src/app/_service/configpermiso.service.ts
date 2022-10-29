@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import lista from 'src/assets/json/listaopcione.json';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Menu } from '../_model/configuracion/menu';
+
+import { MenuResponse } from '../_model/configuracion/menu';
+import { Permiso } from './../_model/permiso';
 
 @Injectable({
   providedIn: 'root'
@@ -11,33 +11,19 @@ import { Menu } from '../_model/configuracion/menu';
 export class ConfigPermisoService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
     ) { }
     
-    menus: Menu = {};
-    listamenu: Menu[] = [];
-    
+  private url: string = `${environment.UrlApi}/configpermiso`;
+  
   listar() {
-    this.listamenu= [];
-
-    for(var k in lista) {
-      this.menus ={};
-
-      this.menus.url =lista[k].url;
-      this.menus.nombre =lista[k].nombre;
-      this.menus.icon =lista[k].icon;
-      this.menus.admin=lista[k].admin;
-      this.listamenu.push(this.menus);
-   }
-
-   let token = localStorage.getItem(environment.TOKEN_NAME);
-   let helper = new JwtHelperService();
-   let decodedToken = helper.decodeToken(token!);
-
-   let admin = (decodedToken.nEsAdministrador=="0")? false:true;
-
-   this.listamenu = (admin==true)? this.listamenu: this.listamenu.filter(y=>y.admin==admin);
-
-   return this.listamenu;
+    let urls = `${this.url}/GetAllOpcionMenu`;
+    return this.http.get<MenuResponse>(urls);
   }
+
+  configmenu() {
+    let urls = `${this.url}/GetAllConfigMenu`;
+    return this.http.get<MenuResponse>(urls);
+  }
+
 }

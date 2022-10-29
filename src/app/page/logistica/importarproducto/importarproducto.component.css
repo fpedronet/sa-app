@@ -78,6 +78,7 @@
        max-width: 100%;
        box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
        margin-top: 10px;
+       height: 420px;
      }
      
      td, th {
@@ -110,12 +111,12 @@
   
   
      .left{
-      width: 50%; 
+      width: 30%; 
       float:left;
       text-align: center;;
      }
      .right{
-      width: 50%; 
+      width: 70%; 
       float:right;
       text-align: center;;
      }
