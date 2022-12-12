@@ -540,7 +540,7 @@ form{
     /* font-size: 1em; */
     text-align: right;
     /* font-weight: bold; */
-    min-height: 30px;
+    min-height: 22px;
     /* margin-bottom: 4%;*/
   }
   .mat-table .mat-cell:before {

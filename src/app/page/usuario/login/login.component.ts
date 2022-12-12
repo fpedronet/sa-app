@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem(environment.FOTO, data.strFoto!);
           localStorage.setItem(environment.CODIGO_EMPRESA, data.codigoEmpresa!);
 
-          this.router.navigate(['/page/inicio']);
+          this.router.navigate(['/page/home']);
         }
 
         this.notifierService.showNotification(data.typeResponse!,'Mensaje',data.mensaje!);

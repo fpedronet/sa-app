@@ -1,6 +1,6 @@
 [
     {
-       "url":"/page/inicio",
+       "url":"/page/home",
        "nombre":"Inicio",
        "icon":"insert_drive_file",
        "admin":false

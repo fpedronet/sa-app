@@ -40,5 +40,12 @@ export class RepuestoingService {
 
     return this.http.get<string>(urls);
   }
+
+  listarIngeniero() {
+    let urls = `${this.url}/GetAllIngeniero`;
+    let req = new RepuestoIngRequest();
+
+    return this.http.get<dataCollection>(urls);
+  }
   
 }

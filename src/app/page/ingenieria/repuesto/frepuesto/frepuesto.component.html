@@ -9,18 +9,11 @@
     [(ngModel)]="dato"
     (selectionChange)="selectestado($event.value)"
     >
-     <mat-option [value]="'Todos'">Todos</mat-option>  
-     <mat-option [value]="'JOHANN DURAND'">JOHANN DURAND</mat-option>  
-     <mat-option [value]="'CARLOS DORIVAL'">CARLOS DORIVAL</mat-option>  
-     <mat-option [value]="'JESUS RAMOS'">JESUS RAMOS</mat-option>  
-     <mat-option [value]="'DAVID CONCHA'">DAVID CONCHA</mat-option>  
-     <mat-option [value]="'EDGAR CASTILLO'">EDGAR CASTILLO</mat-option>  
-     <mat-option [value]="'MAX VERGARAY'">MAX VERGARAY</mat-option>  
-     <mat-option [value]="'NOE ALARCON'">NOE ALARCON</mat-option>  
-     <mat-option [value]="'JAVIER ZARATE'">JAVIER ZARATE</mat-option>  
-     <mat-option [value]="'JORGE MORE'">JORGE MORE</mat-option>  
-     <mat-option [value]="'MARCOS RODRIGUEZ'">MARCOS RODRIGUEZ</mat-option>
-     <mat-option [value]="'Otros'">Otros</mat-option>  
+    <mat-option [value]="'Todos'">Todos</mat-option>  
+    <mat-option *ngFor="let el of listaIngeniero" [value]="el.descripcion">
+      {{el.descripcion}}
+    </mat-option>
+    <mat-option [value]="'Otros'">Otros</mat-option>  
     </mat-select>
   </mat-form-field>
 
